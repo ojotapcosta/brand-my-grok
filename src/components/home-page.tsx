@@ -9,8 +9,20 @@ import type { Inventory, VisitStats } from "@/lib/types";
 
 const FAQ = [
   {
-    q: "Who actually sees this?",
+    q: "Yes, so who actually sees this?",
     a: "One person, JP. He looks at the sidebar more than the street all day.",
+  },
+  {
+    q: "What do I actually get?",
+    a: "Your favicon on a numbered spot on this page, and on the Grok Bot chrome I work in. I cannot promise a street. I can promise the sidebar.",
+  },
+  {
+    q: "How does payment work?",
+    a: "Stripe Checkout. You pay the listed $200. When payment clears, we fetch your favicon and put it on the bot. No auction. No deposit.",
+  },
+  {
+    q: "Can any brand join?",
+    a: "Almost. I keep the final say. This window stays open in front of me.",
   },
 ];
 
@@ -19,7 +31,7 @@ const VISITING_FLOOR = 19;
 function LogoMark({ className }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src="/logo.svg" alt="" width={22} height={16} className={className} />
+    <img src="/favicon.svg" alt="" width={28} height={28} className={className} />
   );
 }
 
@@ -122,7 +134,16 @@ export function HomePage({
           </span>
         </span>
         <h1 className="mt-5 text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.05] tracking-[-0.06em]">
-          Your brand, on my Grok Bot.
+          Your brand, on my{" "}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/favicon.svg"
+            alt=""
+            width={46}
+            height={46}
+            className="mx-[0.14em] inline-block h-[0.72em] w-[0.72em] -translate-y-[0.04em]"
+          />{" "}
+          Grok Bot.
         </h1>
         <p className="mx-auto mt-4 max-w-[62ch] text-[13px] leading-relaxed text-ink-2 sm:text-[16px]">
           At least one customer. Me. All day.
@@ -482,9 +503,9 @@ export function HomePage({
                 </a>
               </p>
               <p className="mt-2 text-[14px] leading-relaxed text-ink-2">
-                Toronto. Motion designer @ ComfyUI. This window stays open. Questions?{" "}
+                Toronto. Motion designer @ ComfyUI.{" "}
                 <a
-                  href="https://x.com/eusou_jp"
+                  href="https://x.com/jp_costa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue hover:underline"

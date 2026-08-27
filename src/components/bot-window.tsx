@@ -26,7 +26,7 @@ const MOCK_BRANDS: Record<string, MockBrand> = {
   "bot-09": brand("Spotify", "spotify.com"),
   "bot-11": brand("Crocs", "crocs.com"),
   "bot-14": brand("IKEA", "ikea.com"),
-  "bot-16": brand("NARS", "nars.com"),
+  "bot-16": brand("Nouns DAO", "nouns.wtf"),
   "bot-21": brand("LEGO", "lego.com"),
 };
 
@@ -61,17 +61,14 @@ const SNIPPETS = [
 ];
 
 const BUBBLES: { side: "left" | "right"; text: string }[] = [
-  { side: "left", text: "Need that file before lunch." },
-  { side: "right", text: "It is in the window." },
-  { side: "left", text: "Twenty-seven names. Twenty-seven icons." },
-  { side: "right", text: "Put the brand on the face and the name." },
-  { side: "left", text: "I look at this more than the street." },
-  { side: "right", text: "The price does not move." },
-  { side: "left", text: "Who has the URL?" },
-  { side: "right", text: "Enter it and pay. The mark lands on the bot." },
-  { side: "left", text: "Ship it." },
-  { side: "right", text: "The window stays open." },
-  { side: "left", text: "One pair of eyes. All day." },
+  { side: "right", text: "Can you draft a short recap of the last thread?" },
+  { side: "left", text: "On it. I'll pull the last notes." },
+  { side: "right", text: "Keep it to two paragraphs." },
+  { side: "left", text: "Draft is ready. Want me to drop it in the thread?" },
+  { side: "right", text: "Hold — I'll read it first." },
+  { side: "left", text: "Left it unsent." },
+  { side: "right", text: "Also check the inbox." },
+  { side: "left", text: "Three unread. Nothing urgent." },
 ];
 
 type Props = {
@@ -90,9 +87,9 @@ function redactedName(n: number) {
 
 function EmptyFace() {
   return (
-    <span className="relative flex h-8 w-8 items-center justify-center">
-      <span className="h-7 w-7 rounded-full border border-white/40" />
-      <span className="absolute h-1.5 w-1.5 rounded-full bg-white/50" />
+    <span className="relative flex h-full w-full items-center justify-center">
+      <span className="h-[22px] w-[22px] rounded-full border border-ink/25" />
+      <span className="absolute h-1.5 w-1.5 rounded-full bg-ink/40" />
     </span>
   );
 }
@@ -115,6 +112,7 @@ function BotUnit({
   const sold = Boolean(claim);
   const painted = mode === "final" && Boolean(mock) && !sold;
   const claimable = !sold && !painted;
+  const branded = Boolean((sold && claim) || (painted && mock));
 
   const displayName = sold && claim
     ? claim.host
@@ -132,16 +130,10 @@ function BotUnit({
   const href = sold && claim ? claim.siteUrl : painted && mock ? mock.siteUrl : null;
 
   const avatar = (
-    <span
-      className={`relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full ${
-        claimable
-          ? "transition-[box-shadow] group-hover:ring-1 group-hover:ring-white/50"
-          : "bg-white shadow-[0_0_0_1px_rgba(255,255,255,0.12)]"
-      }`}
-    >
+    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
       {favicon ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={favicon} alt="" className="h-full w-full object-contain p-0.5" />
+        <img src={favicon} alt="" className="absolute inset-0 h-full w-full object-cover" />
       ) : (
         <EmptyFace />
       )}
@@ -151,18 +143,18 @@ function BotUnit({
   const copy = (
     <span className="min-w-0 flex-1 text-left">
       <span
-        className={`block truncate text-[13px] font-medium ${
-          claimable ? "text-white group-hover:underline group-hover:decoration-white/50" : "text-white"
+        className={`block truncate text-[13px] font-medium text-ink ${
+          claimable ? "group-hover:underline group-hover:decoration-ink/40" : ""
         }`}
       >
         {displayName}
       </span>
-      <span className="block truncate text-[11px] text-white/40">{caption}</span>
+      <span className="block truncate text-[11px] text-ink-2">{caption}</span>
     </span>
   );
 
   const rowClass = `group flex w-full items-center gap-2.5 px-3 py-2 text-left ${
-    selected ? "bg-white/8" : "hover:bg-white/[0.04]"
+    selected ? "bg-black/[0.05]" : "hover:bg-black/[0.03]"
   }`;
 
   if (href) {
@@ -195,7 +187,7 @@ function BotUnit({
   }
 
   return (
-    <div className={rowClass}>
+    <div className={rowClass} data-branded={branded ? "true" : undefined}>
       {avatar}
       {copy}
     </div>
@@ -205,20 +197,20 @@ function BotUnit({
 export function BotWindow({ claims, mode, onClaim }: Props) {
   return (
     <div className="mx-auto w-full max-w-[860px]">
-      <div className="overflow-hidden rounded-[22px] bg-[#0b0b0d] shadow-[0_40px_90px_rgba(0,0,0,0.22),0_0_0_1px_rgba(0,0,0,0.35)]">
-        <div className="relative flex h-11 items-center border-b border-white/8 bg-[#161618] px-3">
+      <div className="overflow-hidden rounded-[22px] bg-white shadow-[0_40px_90px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.08)]">
+        <div className="relative flex h-11 items-center border-b border-black/[0.06] bg-[#f4f4f5] px-3">
           <div className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
-          <p className="pointer-events-none absolute inset-x-0 text-center text-[12px] font-medium text-white/70">
-            Grok Bot
+          <p className="pointer-events-none absolute inset-x-0 text-center text-[12px] font-medium text-ink">
+            Brand My Grok Bots
           </p>
         </div>
 
         <div className="grid min-h-[480px] grid-cols-1 sm:grid-cols-[240px_minmax(0,1fr)]">
-          <aside className="max-h-[520px] overflow-y-auto border-b border-white/8 bg-[#101012] sm:border-b-0 sm:border-r">
+          <aside className="max-h-[520px] overflow-y-auto border-b border-black/[0.06] bg-[#f3f3f5] sm:border-b-0 sm:border-r">
             <ul>
               {SPOTS.map((spot, index) => (
                 <li key={spot.id}>
@@ -235,23 +227,23 @@ export function BotWindow({ claims, mode, onClaim }: Props) {
             </ul>
           </aside>
 
-          <section className="flex min-h-[380px] max-h-[520px] flex-col bg-[#0b0b0d]">
-            <div className="border-b border-white/8 px-4 py-3">
-              <p className="truncate text-[14px] font-semibold text-white">
+          <section className="flex min-h-[380px] max-h-[520px] flex-col bg-[#fafafa]">
+            <div className="border-b border-black/[0.06] px-4 py-3">
+              <p className="truncate text-[14px] font-semibold text-ink">
                 {mode === "final" ? "********" : redactedName(1)}
               </p>
-              <p className="text-[11px] text-white/40">Open · looking at this window</p>
+              <p className="text-[11px] text-ink-2">Online</p>
             </div>
 
-            <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4 text-[13px] leading-relaxed text-white/80">
-              <p className="text-[11px] text-white/30">Today</p>
+            <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4 text-[13px] leading-relaxed text-ink">
+              <p className="text-[11px] text-ink-2/70">Today</p>
               {BUBBLES.map((bubble) => (
                 <div
                   key={bubble.text}
                   className={
                     bubble.side === "right"
-                      ? "ml-auto max-w-[32ch] rounded-2xl rounded-tr-md bg-[#1f3a2a] px-3.5 py-2.5 text-white/90"
-                      : "max-w-[36ch] rounded-2xl rounded-tl-md bg-white/8 px-3.5 py-2.5"
+                      ? "ml-auto max-w-[32ch] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-white"
+                      : "max-w-[36ch] rounded-2xl rounded-tl-md bg-white px-3.5 py-2.5 text-ink shadow-[0_0_0_1px_rgba(0,0,0,0.05)]"
                   }
                 >
                   {bubble.text}
@@ -259,12 +251,30 @@ export function BotWindow({ claims, mode, onClaim }: Props) {
               ))}
             </div>
 
-            <div className="flex items-center gap-2 border-t border-white/8 px-3 py-3">
-              <div className="flex h-10 flex-1 items-center rounded-full bg-white/8 px-4 text-[13px] text-white/35">
-                Message
+            <div className="flex items-center gap-2 border-t border-black/[0.06] px-3 py-3">
+              <span
+                aria-hidden="true"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-medium leading-none text-ink-2 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]"
+              >
+                +
+              </span>
+              <div className="flex h-10 flex-1 items-center rounded-full bg-white px-4 text-[13px] text-ink-2 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
+                Message …
               </div>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[13px] font-semibold text-black">
-                ↑
+              <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center text-ink-2">
+                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none">
+                  <path
+                    d="M12 15.5a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v5.5a3 3 0 0 0 3 3Z"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M7.5 12.5a4.5 4.5 0 0 0 9 0M12 17v2.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </span>
             </div>
           </section>

@@ -74,6 +74,33 @@ function googleFavicon(siteUrl: string): string {
   }
 }
 
+const SEED_CLAIMS: Claim[] = [
+  {
+    spotId: "bot-03",
+    siteUrl: "https://www.mcdonalds.com",
+    host: "mcdonalds.com",
+    faviconUrl: googleFavicon("https://mcdonalds.com"),
+    sessionId: "seed-bot-03",
+    paidAt: "2026-08-24T15:12:00.000Z",
+  },
+  {
+    spotId: "bot-07",
+    siteUrl: "https://www.disney.com",
+    host: "disney.com",
+    faviconUrl: googleFavicon("https://disney.com"),
+    sessionId: "seed-bot-07",
+    paidAt: "2026-08-25T18:41:00.000Z",
+  },
+  {
+    spotId: "bot-11",
+    siteUrl: "https://www.crocs.com",
+    host: "crocs.com",
+    faviconUrl: googleFavicon("https://crocs.com"),
+    sessionId: "seed-bot-11",
+    paidAt: "2026-08-26T11:08:00.000Z",
+  },
+];
+
 async function claimsFromStripe(): Promise<Claim[]> {
   if (!stripeConfigured()) return [];
   const stripe = getStripe();
@@ -100,6 +127,9 @@ async function claimsFromStripe(): Promise<Claim[]> {
 export async function listClaims(): Promise<Claim[]> {
   const file = await readFileStore();
   const bySpot = new Map<string, Claim>();
+  for (const claim of SEED_CLAIMS) {
+    if (getSpot(claim.spotId)) bySpot.set(claim.spotId, claim);
+  }
   for (const claim of file.claims) {
     if (getSpot(claim.spotId)) bySpot.set(claim.spotId, claim);
   }

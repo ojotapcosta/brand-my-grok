@@ -126,7 +126,7 @@ export function HomePage({
           </span>
         </span>
         <h1 className="mt-5 text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.05] tracking-[-0.06em]">
-          Your brand, on my Grok Bot{" "}
+          Your brand, on my Grok Bot.{" "}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/favicon.svg"
@@ -135,7 +135,6 @@ export function HomePage({
             height={46}
             className="ml-[0.04em] inline-block h-[0.72em] w-[0.72em] -translate-y-[0.04em]"
           />
-          .
         </h1>
         <p className="mx-auto mt-4 max-w-[62ch] text-[13px] leading-relaxed text-ink-2 sm:text-[16px]">
           At least one customer. Me. All day.

@@ -240,13 +240,17 @@ export function BotWindow({ claims, mode, onClaim }: Props) {
               {BUBBLES.map((bubble) => (
                 <div
                   key={bubble.text}
-                  className={
-                    bubble.side === "right"
-                      ? "ml-auto max-w-[32ch] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-white"
-                      : "max-w-[36ch] rounded-2xl rounded-tl-md bg-white px-3.5 py-2.5 text-ink shadow-[0_0_0_1px_rgba(0,0,0,0.05)]"
-                  }
+                  className={`flex ${bubble.side === "right" ? "justify-end" : "justify-start"}`}
                 >
-                  {bubble.text}
+                  <div
+                    className={
+                      bubble.side === "right"
+                        ? "ml-auto w-fit max-w-[32ch] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-right text-white"
+                        : "w-fit max-w-[36ch] rounded-2xl rounded-tl-md bg-white px-3.5 py-2.5 text-left text-ink shadow-[0_0_0_1px_rgba(0,0,0,0.05)]"
+                    }
+                  >
+                    {bubble.text}
+                  </div>
                 </div>
               ))}
             </div>

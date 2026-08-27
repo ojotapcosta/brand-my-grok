@@ -87,7 +87,7 @@ export function HomePage({
         <div className="relative mx-auto flex h-[57px] max-w-5xl items-center justify-between px-5">
           <a href="#top" className="relative z-10 flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] text-ink">
             <LogoMark className="h-7 w-auto" />
-            Brand My Grok Bot
+            Brand My Grok Bots
           </a>
           <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
             <div className="pointer-events-auto flex items-center gap-7 text-[13px] text-ink-2">
@@ -98,7 +98,7 @@ export function HomePage({
                 How it works
               </a>
               <a href="#specs" className="transition-colors hover:text-ink">
-                The machine
+                The plan
               </a>
               <a href="#faq" className="transition-colors hover:text-ink">
                 FAQ
@@ -391,7 +391,7 @@ export function HomePage({
 
       <section id="specs" className="scroll-mt-20 bg-surface py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="text-3xl font-semibold tracking-[-0.015em] md:text-4xl">The machine.</h2>
+          <h2 className="text-3xl font-semibold tracking-[-0.015em] md:text-4xl">The plan.</h2>
           <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-ink-2">
             Cursor Ultra is the plan. $200/month. 27 bots × $200 = $5,400.
           </p>

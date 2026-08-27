@@ -16,20 +16,28 @@ const metadataBase = new URL(
 
 export const metadata: Metadata = {
   metadataBase,
-  title: "Brand My Grok Bot",
+  title: "Brand My Grok Bots",
   description:
     "27 bots. $200 each. Your brand sits on the bot's name and icon — the one surface I look at all day.",
   openGraph: {
-    title: "Brand My Grok Bot",
+    title: "Brand My Grok Bots",
     description: "Your brand, on my Grok Bot. At least one customer. Me. All day.",
-    siteName: "Brand My Grok Bot",
+    siteName: "Brand My Grok Bots",
     locale: "en",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brand My Grok Bot",
+    title: "Brand My Grok Bots",
     description: "Your brand, on my Grok Bot. At least one customer. Me. All day.",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 

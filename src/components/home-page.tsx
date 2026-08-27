@@ -14,8 +14,7 @@ const FAQ = [
   },
 ];
 
-const VISITING_FLOOR = 18;
-const TOTAL_FLOOR = 3942;
+const VISITING_FLOOR = 19;
 
 function LogoMark({ className }: { className?: string }) {
   return (
@@ -43,7 +42,7 @@ export function HomePage({
   const [inventory, setInventory] = useState(initialInventory);
   const [visits, setVisits] = useState<VisitStats>({
     visiting: VISITING_FLOOR,
-    total: TOTAL_FLOOR,
+    total: 0,
   });
   const [mode, setMode] = useState<"live" | "final">("live");
   const [open, setOpen] = useState<Spot | null>(null);
@@ -61,7 +60,7 @@ export function HomePage({
       .then((data: VisitStats) =>
         setVisits({
           visiting: Math.max(VISITING_FLOOR, Number(data.visiting) || 0),
-          total: Math.max(TOTAL_FLOOR, Number(data.total) || 0),
+          total: Number(data.total) || 0,
         }),
       )
       .catch(() => undefined);
@@ -116,17 +115,11 @@ export function HomePage({
       </nav>
 
       <header id="top" className="mx-auto max-w-5xl px-6 pb-16 pt-12 text-center md:pt-16">
-        <span className="flex flex-wrap items-center justify-center gap-2 text-[13px] text-ink-2">
+        <span className="flex items-center justify-center gap-2 text-[13px] text-ink-2">
           <LiveDot />
-          <span className="text-[22px] font-semibold tabular-nums leading-none text-ink sm:text-[28px]">
-            {visits.visiting}
+          <span>
+            <span className="tabular-nums">{visits.visiting}</span> visiting this site
           </span>
-          <span className="opacity-50">visiting this site</span>
-          <span className="text-hairline">·</span>
-          <span className="text-[18px] font-semibold tabular-nums leading-none text-ink sm:text-[22px]">
-            {visits.total}
-          </span>
-          <span className="opacity-50">total</span>
         </span>
         <h1 className="mt-5 text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.05] tracking-[-0.06em]">
           Your brand, on my Grok Bot.
@@ -398,8 +391,37 @@ export function HomePage({
 
       <section id="specs" className="scroll-mt-20 bg-surface py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="text-3xl font-semibold tracking-[-0.015em] md:text-4xl">Cursor Ultra</h2>
-          <p className="mt-4 text-2xl font-semibold tabular-nums tracking-[-0.02em]">$200 / month</p>
+          <h2 className="text-3xl font-semibold tracking-[-0.015em] md:text-4xl">The machine.</h2>
+          <p className="mt-3 max-w-[60ch] text-ink-2">
+            Cursor Ultra is the plan this window runs on. One bot covers one month.
+          </p>
+
+          <div className="mt-8 overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <div className="px-5 py-6 sm:px-6">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] md:text-2xl">Cursor Ultra</h3>
+              <p className="mt-1 text-3xl font-semibold tabular-nums tracking-[-0.03em] md:text-4xl">
+                $200 / month
+              </p>
+            </div>
+            <dl className="text-[14px]">
+              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
+                <dt className="text-ink">Plan</dt>
+                <dd className="text-right text-ink-2">Cursor Ultra</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
+                <dt className="text-ink">Price</dt>
+                <dd className="text-right tabular-nums text-ink-2">$200 / month</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
+                <dt className="text-ink">What it covers</dt>
+                <dd className="text-right text-ink-2">1 bot = 1 month</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
+                <dt className="text-ink">Spots</dt>
+                <dd className="text-right tabular-nums text-ink-2">27 bots × $200 = $5,400</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
@@ -485,13 +507,28 @@ export function HomePage({
             </nav>
           </div>
           <p className="mt-6 text-[12px] leading-relaxed text-ink-2">
-            Inspired by Brand My iPhone and Brand My MacBook. Not affiliated.
+            Inspired by{" "}
+            <a
+              href="https://brandmyphone.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue hover:underline"
+            >
+              Brand My iPhone
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://brandmymac.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue hover:underline"
+            >
+              Brand My MacBook
+            </a>
+            . Not affiliated.
           </p>
           <p className="mt-3 text-[12px] leading-relaxed text-ink-2">
             Not affiliated with xAI, X, or Cursor.
-          </p>
-          <p className="mt-3 text-[12px] leading-relaxed text-ink-2">
-            brandmybots.com is coming.
           </p>
         </div>
       </footer>

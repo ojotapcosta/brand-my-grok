@@ -197,8 +197,8 @@ function BotUnit({
 export function BotWindow({ claims, mode, onClaim }: Props) {
   return (
     <div className="mx-auto w-full max-w-[860px]">
-      <div className="overflow-hidden rounded-[22px] bg-[#f7f7f8] shadow-[0_40px_90px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.08)]">
-        <div className="relative flex h-11 items-center border-b border-black/[0.06] bg-[#efeff1] px-3">
+      <div className="overflow-hidden rounded-[22px] bg-white shadow-[0_40px_90px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.08)]">
+        <div className="relative flex h-11 items-center border-b border-black/[0.06] bg-[#f4f4f5] px-3">
           <div className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
@@ -242,7 +242,7 @@ export function BotWindow({ claims, mode, onClaim }: Props) {
                   key={bubble.text}
                   className={
                     bubble.side === "right"
-                      ? "ml-auto max-w-[32ch] rounded-2xl rounded-tr-md bg-[#e7e7ea] px-3.5 py-2.5 text-ink"
+                      ? "ml-auto max-w-[32ch] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-white"
                       : "max-w-[36ch] rounded-2xl rounded-tl-md bg-white px-3.5 py-2.5 text-ink shadow-[0_0_0_1px_rgba(0,0,0,0.05)]"
                   }
                 >
@@ -252,11 +252,29 @@ export function BotWindow({ claims, mode, onClaim }: Props) {
             </div>
 
             <div className="flex items-center gap-2 border-t border-black/[0.06] px-3 py-3">
+              <span
+                aria-hidden="true"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-medium leading-none text-ink-2 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]"
+              >
+                +
+              </span>
               <div className="flex h-10 flex-1 items-center rounded-full bg-white px-4 text-[13px] text-ink-2 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
-                Message
+                Message …
               </div>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-[13px] font-semibold text-white">
-                ↑
+              <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center text-ink-2">
+                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none">
+                  <path
+                    d="M12 15.5a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v5.5a3 3 0 0 0 3 3Z"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M7.5 12.5a4.5 4.5 0 0 0 9 0M12 17v2.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </span>
             </div>
           </section>

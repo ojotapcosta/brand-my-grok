@@ -392,35 +392,34 @@ export function HomePage({
       <section id="specs" className="scroll-mt-20 bg-surface py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-3xl font-semibold tracking-[-0.015em] md:text-4xl">The machine.</h2>
-          <p className="mt-3 max-w-[60ch] text-ink-2">
-            Cursor Ultra is the plan this window runs on. One bot covers one month.
+          <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-ink-2">
+            Cursor Ultra is the plan. $200/month. 27 bots × $200 = $5,400.
           </p>
 
           <div className="mt-8 overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <div className="px-5 py-6 sm:px-6">
-              <h3 className="text-xl font-semibold tracking-[-0.02em] md:text-2xl">Cursor Ultra</h3>
-              <p className="mt-1 text-3xl font-semibold tabular-nums tracking-[-0.03em] md:text-4xl">
-                $200 / month
-              </p>
+            <div className="flex items-baseline justify-between gap-4 px-5 py-5 sm:px-6">
+              <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-xl">Cursor Ultra</h3>
+              <p className="shrink-0 text-[15px] tabular-nums text-ink-2">$200 / month</p>
             </div>
-            <dl className="text-[14px]">
-              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
-                <dt className="text-ink">Plan</dt>
-                <dd className="text-right text-ink-2">Cursor Ultra</dd>
+            <div className="text-[14px]">
+              <div className="grid grid-cols-[minmax(5.75rem,28%)_minmax(0,1fr)_auto] items-baseline gap-x-3 border-t border-hairline/60 px-5 py-3.5 sm:grid-cols-[8.5rem_minmax(0,1fr)_auto] sm:px-6">
+                <span className="text-[13px] text-ink-2">Plan</span>
+                <span className="text-ink">Cursor Ultra</span>
+                <span className="tabular-nums text-ink-2">$200</span>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
-                <dt className="text-ink">Price</dt>
-                <dd className="text-right tabular-nums text-ink-2">$200 / month</dd>
+              <div className="grid grid-cols-[minmax(5.75rem,28%)_minmax(0,1fr)_auto] items-baseline gap-x-3 border-t border-hairline/60 px-5 py-3.5 sm:grid-cols-[8.5rem_minmax(0,1fr)_auto] sm:px-6">
+                <span className="text-[13px] text-ink-2">What it covers</span>
+                <span className="col-span-2 text-ink sm:col-span-1">1 bot = 1 month of Cursor Ultra</span>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
-                <dt className="text-ink">What it covers</dt>
-                <dd className="text-right text-ink-2">1 bot = 1 month</dd>
+              <div className="grid grid-cols-[minmax(5.75rem,28%)_minmax(0,1fr)_auto] items-baseline gap-x-3 border-t border-hairline/60 px-5 py-3.5 sm:grid-cols-[8.5rem_minmax(0,1fr)_auto] sm:px-6">
+                <span className="text-[13px] text-ink-2">Inventory</span>
+                <span className="text-ink">27 bots</span>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-hairline/60 px-5 py-3.5 sm:px-6">
-                <dt className="text-ink">Spots</dt>
-                <dd className="text-right tabular-nums text-ink-2">27 bots × $200 = $5,400</dd>
+              <div className="grid grid-cols-[minmax(5.75rem,28%)_minmax(0,1fr)_auto] items-baseline gap-x-3 border-t border-hairline/60 px-5 py-3.5 sm:grid-cols-[8.5rem_minmax(0,1fr)_auto] sm:px-6">
+                <span className="text-[13px] text-ink-2">Sellout</span>
+                <span className="tabular-nums text-ink">$5,400</span>
               </div>
-            </dl>
+            </div>
           </div>
         </div>
       </section>

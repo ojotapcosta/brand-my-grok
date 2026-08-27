@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Brand My Grok Bot Bot — Your brand, on my Grok Bot.";
+export const alt = "Brand My Grok Bots — Your brand, on my Grok Bot.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default async function Image() {
             letterSpacing: "-0.02em",
           }}
         >
-          Brand My Grok Bot
+          Brand My Grok Bots
         </div>
         <div
           style={{

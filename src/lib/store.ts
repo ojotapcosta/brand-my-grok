@@ -74,6 +74,33 @@ function googleFavicon(siteUrl: string): string {
   }
 }
 
+const SEED_CLAIMS: Claim[] = [
+  {
+    spotId: "bot-03",
+    siteUrl: "https://fieldnote.co",
+    host: "fieldnote.co",
+    faviconUrl: "/seeds/fieldnote.svg",
+    sessionId: "seed-bot-03",
+    paidAt: "2026-08-24T15:12:00.000Z",
+  },
+  {
+    spotId: "bot-07",
+    siteUrl: "https://sablepress.com",
+    host: "sablepress.com",
+    faviconUrl: "/seeds/sablepress.svg",
+    sessionId: "seed-bot-07",
+    paidAt: "2026-08-25T18:41:00.000Z",
+  },
+  {
+    spotId: "bot-11",
+    siteUrl: "https://muteobjects.co",
+    host: "muteobjects.co",
+    faviconUrl: "/seeds/muteobjects.svg",
+    sessionId: "seed-bot-11",
+    paidAt: "2026-08-26T11:08:00.000Z",
+  },
+];
+
 async function claimsFromStripe(): Promise<Claim[]> {
   if (!stripeConfigured()) return [];
   const stripe = getStripe();
@@ -100,6 +127,9 @@ async function claimsFromStripe(): Promise<Claim[]> {
 export async function listClaims(): Promise<Claim[]> {
   const file = await readFileStore();
   const bySpot = new Map<string, Claim>();
+  for (const claim of SEED_CLAIMS) {
+    if (getSpot(claim.spotId)) bySpot.set(claim.spotId, claim);
+  }
   for (const claim of file.claims) {
     if (getSpot(claim.spotId)) bySpot.set(claim.spotId, claim);
   }
